@@ -7,13 +7,13 @@ class DishDetail extends Component {
         if (dish != null) {
             return (
                 <div className="col-12 col-md-5 m-1">
-                <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
-                    <CardBody>
-                        <CardTitle><b>{dish.name}</b></CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
+                    <Card>
+                        <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
+                        <CardBody>
+                            <CardTitle><b>{dish.name}</b></CardTitle>
+                            <CardText>{dish.description}</CardText>
+                        </CardBody>
+                    </Card>
                 </div>
             );
         } else {
@@ -23,16 +23,12 @@ class DishDetail extends Component {
         }
     }
 
-    renderComments(comments) {
-        if(comments == null) {
-            return (<div></div>)
-        }
-
+    renderComments(comments) { 
         const cmts = comments.map((comment) => {
-            return(
+            return (
                 <li key={comment.id}>
                     <p>{comment.comment}</p>
-                    <p>-- {comment.author}, 
+                    <p>-- {comment.author},
                     &nbsp;
                     {new Intl.DateTimeFormat('en-US', {
                         year: 'numeric',
@@ -44,14 +40,18 @@ class DishDetail extends Component {
             )
         })
 
-        return (
-            <div className="col-12 col-md-5 m-1">
-                <h4>Comments</h4>
-                <ul className="list-unstyled">
-                    {cmts}
-                </ul>
-            </div>
-        )
+        if (comments != null) {
+            return (
+                <div className="col-12 col-md-5 m-1">
+                    <h4>Comments</h4>
+                    <ul className="list-unstyled">
+                        {cmts}
+                    </ul>
+                </div>
+            )
+        } else {
+            return (<div></div>)
+        }
     }
 
     render() {
